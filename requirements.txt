@@ -2,7 +2,7 @@ asn1crypto==0.23.0
 certifi>=2023.7.22
 cffi==1.11.2
 chardet==3.0.4
-cryptography==42.0.8
+cryptography>=43.0.1
 dj-database-url==0.4.1
 Django>=4.2.16
 django-bmemcached==0.2.3
