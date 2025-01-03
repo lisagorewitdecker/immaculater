@@ -13,7 +13,7 @@ gunicorn>=22.0.0
 idna==3.7
 ipaddress==1.0.18
 jsonfield==2.0.2
-protobuf==3.3.0
+protobuf>=3.18.3
 psycopg2==2.7.3.2
 pycparser==2.18
 python-binary-memcached==0.26.1
