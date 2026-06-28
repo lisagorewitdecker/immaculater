@@ -201,7 +201,7 @@ function pjax(options) {
     throw "expected string value for 'container' option; got " + containerType
   }
   options.container = validateContainerSelector(options.container)
-  var context = options.context = $(options.container)
+  var context = options.context = $($.find(options.container))
   if (!context.length) {
     throw "the container selector '" + options.container + "' did not match anything"
   }
