@@ -200,6 +200,7 @@ function pjax(options) {
   if (containerType !== 'string') {
     throw "expected string value for 'container' option; got " + containerType
   }
+  options.container = validateContainerSelector(options.container)
   var context = options.context = $(options.container)
   if (!context.length) {
     throw "the container selector '" + options.container + "' did not match anything"
@@ -675,6 +676,25 @@ function stripHash(location) {
 //   optionsFor('#container', {push: true})
 //   // => {container: '#container', push: true}
 //
+// Ensures a container value is a safe selector string and not HTML.
+function validateContainerSelector(container) {
+  if ($.type(container) !== 'string') {
+    throw "expected string value for 'container' option; got " + $.type(container)
+  }
+
+  var selector = $.trim(container)
+  if (!selector) {
+    throw "expected non-empty string value for 'container' option"
+  }
+
+  // Prevent jQuery from interpreting attacker-controlled input as HTML.
+  if (selector.indexOf('<') !== -1 || selector.indexOf('>') !== -1) {
+    throw "invalid container selector: must not contain HTML meta-characters"
+  }
+
+  return selector
+}
+
 //   optionsFor({container: '#container', push: true})
 //   // => {container: '#container', push: true}
 //
