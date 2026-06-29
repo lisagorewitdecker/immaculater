@@ -1406,8 +1406,8 @@ def _slackapi(request):
     return HttpResponse(u"\n".join(results['printed']) if results['printed'] else u'Command succeeded.',
                         content_type="text/plain")
   except immaculater.Error as error:
-    _debug_log(u'we have an error')
-    return HttpResponse(unicode(error), content_type="text/plain")
+    _debug_log(u'we have an error: %s' % unicode(error))
+    return HttpResponse(u'Command failed. Please try again.', content_type="text/plain")
 
 
 @never_cache
