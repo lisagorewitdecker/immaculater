@@ -1385,7 +1385,8 @@ def api(request):
                          'printed': results['printed'],
                          'view': results['view']})
   except immaculater.Error as error:
-    return JsonResponse({'immaculater_error': unicode(error)}, status=422)
+    _debug_log(u'api command failed: %s' % unicode(error))
+    return JsonResponse({'error': 'Command failed. Please try again.'}, status=422)
 
 
 def _slackapi(request):
